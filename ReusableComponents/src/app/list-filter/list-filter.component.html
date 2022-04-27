@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>Filter List</h2>
+    <div class="search-container">
+        <form action="/action_page.php">
+          <input type="text" placeholder="Search.."
+          [(ngModel)]="searchString"
+          pattern="[a-zA-Z ]*"
+          name="searchString">
+          <button (click)="clearSearchFilter()"><i class="fa fa-remove"></i></button>
+        </form>
+    </div>
+    <h3 *ngIf="searchString">Filtering for <span style="color: gray;">{{searchString}}</span></h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Place</th>
+          <th>Animal</th>
+          <th>Thing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of _filteredItems">
+          <td>{{item.name}}</td>
+          <td>{{item.place}}</td>
+          <td>{{item.animal}}</td>
+          <td>{{item.thing}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
