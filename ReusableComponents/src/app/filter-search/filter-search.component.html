@@ -1,0 +1,10 @@
+<div class="search-container">
+    <form action="/action_page.php">
+      <input type="text" placeholder="Search.."
+      [(ngModel)]="searchString"
+      (input)="_filteredItems()"
+      name="searchString">
+      <button (click)="clearSearchFilter()"><i class="fa fa-remove"></i></button>
+    </form>
+</div>
+<h3 *ngIf="searchString">Filtering for <span style="color: gray;">{{searchString}}</span></h3>

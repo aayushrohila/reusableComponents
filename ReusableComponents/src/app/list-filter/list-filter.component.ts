@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListFilterComponent implements OnInit {
 
-  searchString: string = "";
   items = [{name: "John", place: "Noida", animal: "Dog", thing: "Bone"},
   {name: "John Lewinski", place: "Noida", animal: "Cat", thing: "Something1"},
   {name: "Joane", place: "Noida", animal: "Mouse", thing: "Something2"},
@@ -102,30 +101,29 @@ export class ListFilterComponent implements OnInit {
   {name: "John", place: "Noida", animal: "Dog", thing: "Bone"},
   {name: "John", place: "Noida", animal: "Dog", thing: "Bone"},
   ];
+  _filteredItems: any[] = [];
 
   constructor() { }
 
-  ngOnInit(): void { }
-
-  get _filteredItems() {
-    this.trimSearchString();
-    let filteredItems =  this.items.filter((element: any) => {
-      let booleanArray: boolean[] = [];
-      booleanArray = Object.keys(element).map((el) => {
-        return element[el].toLowerCase().includes(this.searchString.toLowerCase())? true: false;
-      });
-      return booleanArray.includes(true);
-    });
-    return filteredItems;
+  ngOnInit(): void {
+    this._filteredItems = this.items;
   }
 
-  trimSearchString() {
-    this.searchString = this.searchString.trim();
+  filteredItems(filteredList: any) {
+    this._filteredItems = filteredList;
   }
 
-
-  clearSearchFilter() {
-    this.searchString = "";
+  sortBy(criteria: string) {
+    let ele: any = document.getElementById(criteria);
+    let order = ele?.getAttribute('order');
+    if(order === 'asc') {
+      this._filteredItems = this._filteredItems.sort((a,b) => (a[criteria]>b[criteria])?1:-1);
+      ele.setAttribute('order', 'desc');
+    } else if(order === 'desc') {
+      this._filteredItems = this._filteredItems.sort((a,b) => (a[criteria]>b[criteria])?-1:1);
+      ele.setAttribute('order', 'asc');
+    }
   }
+
 
 }

@@ -1,22 +1,14 @@
 <div class="container">
     <h2>Filter List</h2>
-    <div class="search-container">
-        <form action="/action_page.php">
-          <input type="text" placeholder="Search.."
-          [(ngModel)]="searchString"
-          pattern="[a-zA-Z ]*"
-          name="searchString">
-          <button (click)="clearSearchFilter()"><i class="fa fa-remove"></i></button>
-        </form>
-    </div>
-    <h3 *ngIf="searchString">Filtering for <span style="color: gray;">{{searchString}}</span></h3>
+    <app-filter-search [listItems]="items"
+    (filteredItems)="filteredItems($event)"></app-filter-search>
     <table class="table">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Place</th>
-          <th>Animal</th>
-          <th>Thing</th>
+          <th (click)="sortBy('name')" id="name" order="asc" class="down-arrow">Name</th>
+          <th (click)="sortBy('place')" id="place" order="asc">Place</th>
+          <th (click)="sortBy('animal')" id="animal" order="asc">Animal</th>
+          <th (click)="sortBy('thing')" id="thing" order="asc">Thing</th>
         </tr>
       </thead>
       <tbody>

@@ -5,11 +5,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListFilterComponent } from './list-filter/list-filter.component';
+import { FilterSearchComponent } from './filter-search/filter-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListFilterComponent
+    ListFilterComponent,
+    FilterSearchComponent
   ],
   imports: [
     BrowserModule,
