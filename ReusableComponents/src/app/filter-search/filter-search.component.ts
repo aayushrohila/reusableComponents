@@ -5,7 +5,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   templateUrl: './filter-search.component.html',
   styleUrls: ['./filter-search.component.scss']
 })
-export class FilterSearchComponent implements OnInit {
+export class FilterSearchComponent{
 
   @Input('listItems') items: any;
   @Output() filteredItems = new EventEmitter();
@@ -13,9 +13,6 @@ export class FilterSearchComponent implements OnInit {
   searchString: string = "";
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   _filteredItems() {
     this.trimSearchString();

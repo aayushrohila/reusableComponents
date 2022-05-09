@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-list-filter',
@@ -101,28 +101,15 @@ export class ListFilterComponent implements OnInit {
   {name: "John", place: "Noida", animal: "Dog", thing: "Bone"},
   {name: "John", place: "Noida", animal: "Dog", thing: "Bone"},
   ];
-  _filteredItems: any[] = [];
-
+  filteredList: any[] = [];
   constructor() { }
 
   ngOnInit(): void {
-    this._filteredItems = this.items;
+    this.filteredList = this.items;
   }
 
   filteredItems(filteredList: any) {
-    this._filteredItems = filteredList;
-  }
-
-  sortBy(criteria: string) {
-    let ele: any = document.getElementById(criteria);
-    let order = ele?.getAttribute('order');
-    if(order === 'asc') {
-      this._filteredItems = this._filteredItems.sort((a,b) => (a[criteria]>b[criteria])?1:-1);
-      ele.setAttribute('order', 'desc');
-    } else if(order === 'desc') {
-      this._filteredItems = this._filteredItems.sort((a,b) => (a[criteria]>b[criteria])?-1:1);
-      ele.setAttribute('order', 'asc');
-    }
+    this.filteredList = filteredList;
   }
 
 
